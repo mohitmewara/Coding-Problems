@@ -1,0 +1,52 @@
+package com.problems.algorithms;
+
+public class LexicographicalPermutationAlgorithm {
+
+	public static String computeNextPermutation(String str){
+		char[] arr = str.toCharArray();
+		int suffixHead = arr.length -1;
+		
+		
+		while(suffixHead >0 && arr[suffixHead] <= arr[suffixHead-1]){
+			suffixHead--;
+		}
+		
+		if(suffixHead==0){
+			return "no answer";
+		}
+		
+		int pivot = arr.length -1;
+		while(pivot >= suffixHead && arr[pivot] <= arr[suffixHead-1]){
+			pivot--;
+		}
+		
+		char temp = arr[suffixHead-1];
+		arr[suffixHead-1] = arr[pivot];
+		arr[pivot] = temp;
+		
+		pivot = arr.length -1;
+		while(pivot > suffixHead){
+			temp = arr[pivot];
+			arr[pivot] = arr[suffixHead];
+			arr[suffixHead] = temp;
+			pivot--;
+			suffixHead++;
+		}
+		
+		int i=0;
+		String s = "";
+		while(i<arr.length){
+			s += arr[i];
+			i++;
+		}
+		
+		return s;
+		
+	}
+	
+	public static void main(String[] args) {
+//		System.out.println(computeNextPermutation("ab"));
+		String a = "dkhc";
+		System.out.println(computeNextPermutation(a));
+	}
+}
