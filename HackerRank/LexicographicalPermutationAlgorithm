@@ -1,5 +1,3 @@
-package com.problems.algorithms;
-
 public class LexicographicalPermutationAlgorithm {
 
 	public static String computeNextPermutation(String str){
